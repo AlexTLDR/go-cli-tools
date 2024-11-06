@@ -43,7 +43,7 @@ func main() {
 			os.Exit(1)
 		}
 	default:
-		fmt.Println(os.Stderr, "Invalid option")
+		fmt.Fprintln(os.Stderr, "Invalid option")
 		os.Exit(1)
 	}
 }
