@@ -7,7 +7,7 @@ import (
 	"os"
 )
 
-const todoFilename = ".todo.json"
+var todoFilename = ".todo.json"
 
 func main() {
 	flag.Usage = func() {
@@ -20,7 +20,12 @@ func main() {
 	list := flag.Bool("list", false, "List all tasks")
 	complete := flag.Int("complete", 0, "Item to be completed")
 	flag.Parse()
+
+	if os.Getenv("TODO_FILENAME") != "" {
+		todoFilename = os.Getenv("TODO_FILENAME")
+	}
 	l := &todo.List{}
+
 	if err := l.Get(todoFilename); err != nil {
 		fmt.Fprintln(os.Stderr, err)
 		os.Exit(1)
