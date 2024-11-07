@@ -10,6 +10,12 @@ import (
 const todoFilename = ".todo.json"
 
 func main() {
+	flag.Usage = func() {
+		fmt.Fprintf(flag.CommandLine.Output(), "%s tool. Developed for learning purposes.\n", os.Args[0])
+		fmt.Fprintf(flag.CommandLine.Output(), "Copyright 2024\n")
+		fmt.Fprintln(flag.CommandLine.Output(), "Usage information:")
+		flag.PrintDefaults()
+	}
 	task := flag.String("task", "", "Task to be included in the ToDo list")
 	list := flag.Bool("list", false, "List all tasks")
 	complete := flag.Int("complete", 0, "Item to be completed")
